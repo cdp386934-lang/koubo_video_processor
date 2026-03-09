@@ -1,0 +1,91 @@
+{
+  "video_canvas": [1080, 1920],
+  "background": {
+    "enabled": true,
+    "color": "#F5F5F5",
+    "type": "image",
+    "image_path": "/Users/lottery/intership/code/auto_jianying/koubo_video_processor/assets/gray_white_background.png"
+  },
+  "title": {
+    "enabled": true,
+    "text": "恋爱到深处\n\"人会变成孩子\"",
+    "font_size": 16,
+    "x_position": 0,
+    "y_position": -800,
+    "color": "#000000",
+    "has_shadow": "关闭",
+    "alignment": "center",
+    "show_draft_title": false
+  },
+  "author_info": {
+    "enabled": true,
+    "name": "武志红",
+    "title": "北大心理学硕士",
+    "subtitle": "知名心理学家",
+    "font_size": 10,
+    "x_position": 0,
+    "y_position": 800,
+    "color": "#000000",
+    "has_shadow": "关闭",
+    "alignment": "center"
+  },
+  "subtext": {
+    "grade1": {
+      "font_size": 10,
+      "scale_uniform": 1.0,
+      "x_position": 0,
+      "y_position": -600,
+      "color": "#FFFFFF",
+      "has_shadow": "开启"
+    },
+    "grade2": {
+      "font_size": 14,
+      "scale_uniform": 1.3,
+      "x_position": 0,
+      "y_position": -600,
+      "color": "#FFD700",
+      "has_shadow": "开启"
+    },
+    "grade3": {
+      "font_size": 16,
+      "scale_uniform": 1.5,
+      "x_position": 0,
+      "y_position": -600,
+      "color": "#FF0000",
+      "has_shadow": "开启"
+    },
+    "grade4": {
+      "font_size": 18,
+      "scale_uniform": 1.8,
+      "x_position": 0,
+      "y_position": -600,
+      "color": "#FF0000",
+      "has_shadow": "开启"
+    }
+  },
+  "video": {
+    "grade1": {
+      "volume": 1.0,
+      "enable_denoise": "开启",
+      "x_position": 0,
+      "y_position": 0,
+      "scale": 1.0
+    }
+  },
+  "beauty_config": {
+    "auto-beauty": [
+      {"name": "磨皮", "value": 50},
+      {"name": "美白", "value": 30}
+    ]
+  },
+  "audio_list": [],
+  "enable_deepseek": true,
+  "enable_pexels": true,
+  "pexels_config": {
+    "enabled": true,
+    "insert_interval": 45,
+    "clip_duration": 4,
+    "search_mode": "auto",
+    "opacity": 1.0
+  }
+}
