@@ -17,6 +17,7 @@ setup(
         'moviepy==1.0.3',
         'requests',
         'python-dotenv',
+        'pyJianYingDraft>=0.2.5',
         'fastapi',
         'uvicorn',
         'python-multipart',

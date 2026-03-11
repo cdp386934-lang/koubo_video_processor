@@ -4,6 +4,18 @@
 
 这是一个自动化处理口播视频的工具，可以将视频转换为剪映草稿，支持字幕生成、去气口、关键词标注、背景音乐、素材插入等功能。
 
+导出：python3 main.py assets/videos/未加工.mp4 -o "我的视频"
+
+ 未加工视频 → 提取音频 → ASR识别 → 标记气口 → 生成去气口音频/视频  
+                                                          →  生成字幕 → 生成关键字 → 将关键字贴入字幕中  → 放到json
+                                                          →  添加素材（pexels） → 放到json
+                                                          →  添加背景音乐 （数组类型）→ 放到json
+                                                          →  生成视频标题 
+                                                          →  生成作者身份信息
+
+                                                                      → 生成草稿
+
+
 ## 核心功能模块
 
 ### 1. 视频处理核心模块 (processor.py)
@@ -22,11 +34,17 @@
 **处理流程：**
 1. 步骤1: 视频转音频
 2. 步骤2: 音频转文字（ASR）
-3. 步骤3: 去气口处理
+3. 步骤3: 去气口处理（标记 + 生成去气口音频/视频）
 4. 步骤4: DeepSeek 关键词标注
 5. 步骤5: 添加背景音乐
 6. 步骤6: 应用视频信息
 7. 步骤7: 生成剪映草稿
+
+**去气口处理增强：**
+- 在字幕中标记气口片段（`removed: 1`）
+- 可选生成去除气口后的音频文件（`*_no_breath.wav`）
+- 可选生成去除气口后的视频文件（`*_no_breath.mp4`）
+- 自动统计去除时长和比例
 
 **关键类：**
 - `KouboVideoProcessor`: 主处理器类
@@ -35,6 +53,8 @@
 - `video_path`: 输入视频路径
 - `template_path`: 模板配置路径
 - `output_title`: 输出标题
+- `breath_removal.generate_audio`: 是否生成去气口音频（默认true）
+- `breath_removal.generate_video`: 是否生成去气口视频（默认true）
 
 ---
 
@@ -289,11 +309,19 @@ result = exporter.export()
 {
   "breath_removal": {
     "enabled": true,
+    "generate_audio": true,
+    "generate_video": true,
     "threshold": 0.02,
     "min_duration": 200
   }
 }
 ```
+
+**处理效果：**
+- 标记字幕中的气口片段
+- 生成 `*_no_breath.wav` - 去除气口后的音频
+- 生成 `*_no_breath.mp4` - 去除气口后的视频
+- 统计去除时长和比例
 
 ---
 
@@ -419,7 +447,7 @@ A: 确保剪映已安装，且路径正确
 - **火山引擎**: ASR服务
 - **DeepSeek**: AI分析
 - **Pexels**: 素材获取
-- **剪映API**: 草稿生成
+- **CapCut mate**: 草稿生成
 
 ---
 

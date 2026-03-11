@@ -115,12 +115,13 @@ class BreathRemover:
         """
         基于字间间隔的高级去气口
 
-        检测每个字幕片段之间的间隔，如果间隔大于指定阈值，
-        则标记前一个片段为气口（removed=1）
+        检测每个字幕片段之间的间隔，如果间隔小于指定阈值，
+        且当前片段符合气口特征，则标记为气口（removed=1）
 
         参数:
             subtitles: 字幕列表
             max_interval_sec: 最大允许间隔（秒），默认0.5秒
+                            只有间隔小于此值时才考虑去除气口
 
         返回:
             (处理后的字幕列表, 气口数量)
@@ -146,10 +147,12 @@ class BreathRemover:
             next_start = next_subtitle.get('StartMs', 0)
             interval = next_start - current_end
 
-            # 如果间隔大于阈值，标记当前片段为气口
-            if interval > max_interval_ms:
-                current['removed'] = 1
-                removed_count += 1
+            # 只有当间隔小于阈值时，才检查是否为气口
+            if interval < max_interval_ms:
+                # 检查当前片段是否符合气口特征
+                if self.detect_breath_in_subtitle(current):
+                    current['removed'] = 1
+                    removed_count += 1
 
         # 检查最后一个片段是否已被标记
         if subtitles[-1].get('removed') == 1:

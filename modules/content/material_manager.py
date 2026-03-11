@@ -208,9 +208,18 @@ class MaterialManager:
 
             # 检查是否到达插入间隔
             if start_ms - last_insert_time >= insert_interval_ms:
-                # 在句子结束处插入
                 text = subtitle.get('FinalSentence', subtitle.get('Text', ''))
-                if text and text[-1] in ['。', '！', '？', '.', '!', '?']:
+
+                # 优先在句子结束处插入
+                if text and text.strip() and text.strip()[-1] in ['。', '！', '？', '.', '!', '?']:
+                    insertion_points.append({
+                        'index': i,
+                        'time_ms': end_ms,
+                        'duration_ms': clip_duration * 1000
+                    })
+                    last_insert_time = end_ms
+                # 如果没有句子结束标记，在有关键词的字幕处插入
+                elif subtitle.get('keywords') and len(subtitle.get('keywords', [])) > 0:
                     insertion_points.append({
                         'index': i,
                         'time_ms': end_ms,

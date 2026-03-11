@@ -34,16 +34,20 @@ class SubtitleJsonManager:
             return {
                 "subtitles": data,
                 "music": [],
+                "materials": [],
                 "config": {},
-                "metadata": {}
+                "metadata": {},
+                "processing_steps": []
             }
 
-        # 新格式（包含音乐配置和config）
+        # 新格式（包含所有字段）
         return {
             "subtitles": data.get("subtitles", data if isinstance(data, list) else []),
             "music": data.get("music", []),
+            "materials": data.get("materials", []),
             "config": data.get("config", {}),
-            "metadata": data.get("metadata", {})
+            "metadata": data.get("metadata", {}),
+            "processing_steps": data.get("processing_steps", [])
         }
 
     def save_subtitle_json(self, json_path: str, data: Dict, backup: bool = True):

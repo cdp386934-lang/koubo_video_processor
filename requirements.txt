@@ -1,8 +1,17 @@
 moviepy==1.0.3
+pydub
 requests
 python-dotenv
+pyJianYingDraft>=0.2.5
 fastapi
 uvicorn
 python-multipart
 pyautogui
 openai>=1.0.0
+
+# ASR依赖（可选）
+# openai-whisper>=20230314
+
+# 音频分析依赖（可选）
+# librosa>=0.9.0
+# numpy>=1.21.0

@@ -8,12 +8,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # 使用相对导入
-from ..api.api_client import get_api_client
+from ..asr.local_asr import LocalASR
+from ..asr.simple_asr import SimpleASR
 from ..content.keyword_analyzer import KeywordAnalyzer
 from ..content.material_manager import MaterialManager
 from ..audio.background_music_manager import BackgroundMusicManager
+from ..audio.audio_processor import AudioProcessor
 from ..subtitle.subtitle_json_manager import SubtitleJsonManager
 from ..content.title_generator import VideoInfoManager
+from .draft_generator import JianyingDraftGenerator
+from .video_breath_remover import VideoBreathRemover
 
 
 class KouboVideoProcessor:
@@ -59,8 +63,12 @@ class KouboVideoProcessor:
         self.draft_path = None
         self.audio_path = None  # 添加音频路径属性
 
-        # 初始化API客户端
-        self.api_client = get_api_client()
+        # 初始化本地ASR
+        self.local_asr = LocalASR()
+        self.simple_asr = SimpleASR()
+
+        # 初始化草稿生成器
+        self.draft_generator = JianyingDraftGenerator()
 
         # 初始化DeepSeek分析器（如果启用）
         self.keyword_analyzer = None
@@ -91,6 +99,16 @@ class KouboVideoProcessor:
         # 初始化视频信息管理器
         self.video_info_manager = VideoInfoManager()
         self.video_info_config_path = None
+
+        # 初始化音频处理器
+        self.audio_processor = AudioProcessor()
+
+        # 初始化视频去气口处理器
+        self.video_breath_remover = VideoBreathRemover()
+
+        # 去气口处理选项
+        self.generate_no_breath_audio = False
+        self.generate_no_breath_video = False
 
     def set_background_music(self, music_config_path: str = None, music_segments: list = None):
         """
@@ -263,31 +281,39 @@ class KouboVideoProcessor:
         """
         try:
             # 步骤1: 视频转音频
-            print("步骤1/7: 视频转音频...")
+            print("步骤1/8: 视频转音频...")
             self._video_to_audio()
 
             # 步骤2: 音频转文字（ASR）
-            print("步骤2/7: 音频转文字...")
+            print("步骤2/8: 音频转文字...")
             self._video_to_text()
 
             # 步骤3: 去气口处理
-            print("步骤3/7: 去气口处理...")
+            print("步骤3/8: 去气口处理...")
             self._remove_breath()
 
-            # 步骤4: DeepSeek 关键词标注
-            print("步骤4/7: 关键词标注...")
+            # 步骤4: 关键词标注
+            print("步骤4/8: 关键词标注...")
             self._analyze_keywords()
 
-            # 步骤5: 添加背景音乐
-            print("步骤5/7: 添加背景音乐...")
+            # 步骤5: 素材获取与插入
+            print("步骤5/9: 素材获取与插入...")
+            self._fetch_materials()
+
+            # 步骤6: 视频合成（将素材合成到视频中）
+            print("步骤6/9: 视频合成...")
+            self._composite_materials()
+
+            # 步骤7: 添加背景音乐
+            print("步骤7/9: 添加背景音乐...")
             self._load_background_music()
 
-            # 步骤6: 应用视频信息（标题、简介、作者信息）
-            print("步骤6/7: 应用视频信息...")
+            # 步骤8: 应用视频信息（标题、简介、作者信息）
+            print("步骤8/9: 应用视频信息...")
             self._apply_video_info()
 
-            # 步骤7: 生成剪映草稿
-            print("步骤7/7: 生成剪映草稿...")
+            # 步骤9: 生成剪映草稿
+            print("步骤9/9: 生成剪映草稿...")
             self._create_draft()
 
             print("✅ 处理完成")
@@ -390,21 +416,44 @@ class KouboVideoProcessor:
             print(f"  跳过ASR步骤")
             return
 
-        # 使用API客户端调用ASR服务（传入音频路径或视频路径）
+        # 使用本地ASR进行语音识别
         try:
-            print("  调用ASR服务...")
-            # 优先使用音频文件，如果不存在则使用视频文件
+            print("  使用本地ASR进行语音识别...")
+            # 优先使用音频文件
             input_file = self.audio_path if self.audio_path and os.path.exists(self.audio_path) else self.video_path
-            json_path = self.api_client.video_to_text(input_file)
-            self.json_path = json_path
+
+            # 检查是否有可用的ASR方法
+            if not self.local_asr.supported_methods:
+                print(f"  ⚠️  没有可用的本地ASR方法")
+                print(f"\n  请使用以下方式之一提供字幕:")
+                print(f"  1. 安装 Whisper: pip install openai-whisper")
+                print(f"  2. 手动创建: python3 -m modules.asr.simple_asr template {self.video_path}")
+                print(f"  3. 导入SRT:  python3 -m modules.asr.simple_asr srt {self.video_path} <SRT文件>")
+                raise Exception("没有可用的ASR方法，请安装 Whisper 或手动提供字幕")
+
+            # 执行ASR
+            subtitles = self.local_asr.audio_to_text(input_file)
+
+            # 保存为新格式（包含subtitles键）
+            data = {
+                'subtitles': subtitles,
+                'config': {},
+                'processing_steps': []
+            }
+
+            with open(self.json_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+
             print(f"  ✅ ASR完成: {self.json_path}")
+            print(f"  共识别 {len(subtitles)} 条字幕")
+
         except Exception as e:
             print(f"  ❌ ASR失败: {e}")
             print(f"\n  请使用以下方式之一提供字幕:")
-            print(f"  1. 手动创建: python3 simple_asr.py template {self.video_path}")
-            print(f"  2. 导入SRT:  python3 simple_asr.py srt {self.video_path} <SRT文件>")
-            print(f"  3. 使用剪映导出字幕后，放在: {self.json_path}")
-            raise Exception("ASR失败，请手动提供字幕文件")
+            print(f"  1. 安装 Whisper: pip install openai-whisper")
+            print(f"  2. 手动创建: python3 -m modules.asr.simple_asr template {self.video_path}")
+            print(f"  3. 导入SRT:  python3 -m modules.asr.simple_asr srt {self.video_path} <SRT文件>")
+            raise Exception(f"ASR失败: {e}")
 
         if not os.path.exists(self.json_path):
             raise Exception("ASR处理失败，未生成字幕文件")
@@ -433,13 +482,52 @@ class KouboVideoProcessor:
         data = self.subtitle_json_manager.load_subtitle_json(self.json_path)
         subtitles = data['subtitles']
 
+        # 导入去气口处理器
+        from modules.audio.breath_remover import BreathRemover
+        breath_remover = BreathRemover()
+
+        # 获取配置参数
+        max_gap = config.get('max_gap', 500) / 1000  # 转换为秒，默认0.5秒
+
+        # 执行去气口检测（基于字间间隔）
+        print(f"  使用字间间隔检测（最大间隔: {max_gap}秒）")
+        subtitles, removed_count = breath_remover.remove_breaths_by_interval(
+            subtitles, max_gap
+        )
+
+        # 保存更新后的字幕
+        data['subtitles'] = subtitles
+        self.subtitle_json_manager.save_subtitle_json(self.json_path, data)
+
         # 统计信息
         total = len(subtitles)
-        removed_count = sum(1 for s in subtitles if s.get('removed') == 1)
-
         print(f"  总字幕数: {total}")
         print(f"  气口片段: {removed_count}")
         print(f"  保留片段: {total - removed_count}")
+
+        # 生成去气口音频（如果启用）
+        if config.get('generate_audio', False) and self.audio_path:
+            try:
+                print(f"\n  正在生成去气口音频...")
+                no_breath_audio = self.audio_processor.remove_breath_segments(
+                    self.audio_path,
+                    subtitles
+                )
+                print(f"  ✅ 去气口音频: {no_breath_audio}")
+            except Exception as e:
+                print(f"  ⚠️  生成去气口音频失败: {e}")
+
+        # 生成去气口视频（如果启用）
+        if config.get('generate_video', False):
+            try:
+                print(f"\n  正在生成去气口视频...")
+                no_breath_video = self.video_breath_remover.remove_breath_segments(
+                    self.video_path,
+                    subtitles
+                )
+                print(f"  ✅ 去气口视频: {no_breath_video}")
+            except Exception as e:
+                print(f"  ⚠️  生成去气口视频失败: {e}")
 
         # 记录处理步骤
         duration_ms = int((time.time() - start_time) * 1000)
@@ -452,7 +540,7 @@ class KouboVideoProcessor:
         )
 
     def _analyze_keywords(self):
-        """步骤4: DeepSeek 关键词标注"""
+        """步骤4: 生成关键字并贴入字幕，保存到JSON"""
         import time
         start_time = time.time()
 
@@ -465,26 +553,32 @@ class KouboVideoProcessor:
         # 使用DeepSeek标注关键词
         if self.keyword_analyzer:
             try:
-                print("  正在使用DeepSeek标注关键词...")
+                print("  [1/3] 正在使用DeepSeek生成关键词...")
 
                 # 加载数据
                 data = self.subtitle_json_manager.load_subtitle_json(self.json_path)
                 subtitles = data['subtitles']
 
                 # 分析关键词
+                print("  [2/3] 正在分析字幕内容并提取关键词...")
                 subtitles = self.keyword_analyzer.analyze_keywords(subtitles)
 
                 # 统计关键词数量
                 keyword_count = sum(1 for s in subtitles if s.get('keyword'))
-                print(f"  标注关键词: {keyword_count}个")
+                keywords_in_text = sum(1 for s in subtitles if s.get('keywords'))
+
+                print(f"  ✅ 生成关键词: {keyword_count}个")
+                print(f"  ✅ 关键词已贴入字幕: {keywords_in_text}条")
 
                 # 更新数据
                 data['subtitles'] = subtitles
 
                 # 保存更新后的字幕（保持新格式）
+                print("  [3/3] 正在保存字幕到JSON...")
                 self.subtitle_json_manager.save_subtitle_json(
                     self.json_path, data, backup=False
                 )
+                print(f"  ✅ 字幕已保存到: {self.json_path}")
 
                 # 记录处理步骤
                 duration_ms = int((time.time() - start_time) * 1000)
@@ -497,7 +591,7 @@ class KouboVideoProcessor:
                 )
 
             except Exception as e:
-                print(f"  DeepSeek标注失败: {e}")
+                print(f"  ❌ DeepSeek标注失败: {e}")
                 # 记录失败步骤
                 duration_ms = int((time.time() - start_time) * 1000)
                 self.subtitle_json_manager.add_processing_step(
@@ -546,24 +640,35 @@ class KouboVideoProcessor:
                 print(f"  DeepSeek标注失败: {e}")
 
     def _fetch_materials(self):
-        """步骤3: 获取Pexels素材"""
+        """步骤5: 获取Pexels素材并插入到JSON"""
+        import time
+        start_time = time.time()
+
+        # 加载配置
+        pexels_config = self.template_config.get('pexels_config', {})
+
+        if not pexels_config.get('enabled', False):
+            print("  ⏭️  素材插入未启用")
+            # 记录跳过步骤
+            duration_ms = int((time.time() - start_time) * 1000)
+            self.subtitle_json_manager.add_processing_step(
+                self.json_path,
+                step='material_insertion',
+                status='skipped',
+                duration_ms=duration_ms
+            )
+            return
+
         if not self.material_manager:
-            print("  Pexels素材功能未启用，跳过")
+            print("  ⚠️  素材管理器未初始化")
             return
 
         try:
-            # 读取字幕数据
-            with open(self.json_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
+            # 加载字幕数据
+            data = self.subtitle_json_manager.load_subtitle_json(self.json_path)
+            subtitles = data['subtitles']
 
-            # 兼容新旧格式
-            if isinstance(data, dict) and 'subtitles' in data:
-                subtitles = data['subtitles']
-            else:
-                subtitles = data
-
-            # 获取配置
-            pexels_config = self.template_config.get('pexels_config', {})
+            print(f"  正在分析素材插入点...")
 
             # 插入素材
             subtitles, materials = self.material_manager.insert_materials(
@@ -571,182 +676,146 @@ class KouboVideoProcessor:
             )
 
             if materials:
-                print(f"  成功插入 {len(materials)} 个素材")
+                print(f"  ✅ 成功插入 {len(materials)} 个素材")
+
+                # 更新数据
+                data['subtitles'] = subtitles
+
+                # 将素材信息也保存到 JSON 中
+                if 'materials' not in data:
+                    data['materials'] = []
+                data['materials'].extend(materials)
 
                 # 保存更新后的字幕
-                if isinstance(data, dict) and 'subtitles' in data:
-                    data['subtitles'] = subtitles
-                else:
-                    data = subtitles
+                self.subtitle_json_manager.save_subtitle_json(
+                    self.json_path, data, backup=False
+                )
 
-                with open(self.json_path, 'w', encoding='utf-8') as f:
-                    json.dump(data, f, ensure_ascii=False, indent=2)
-
-                # 保存更新后的字幕
-                with open(self.json_path, 'w', encoding='utf-8') as f:
-                    json.dump(subtitles, f, ensure_ascii=False, indent=2)
+                # 记录处理步骤
+                duration_ms = int((time.time() - start_time) * 1000)
+                self.subtitle_json_manager.add_processing_step(
+                    self.json_path,
+                    step='material_insertion',
+                    status='completed',
+                    duration_ms=duration_ms,
+                    materials_count=len(materials)
+                )
+            else:
+                print(f"  ⚠️  未获取到素材")
+                # 记录处理步骤
+                duration_ms = int((time.time() - start_time) * 1000)
+                self.subtitle_json_manager.add_processing_step(
+                    self.json_path,
+                    step='material_insertion',
+                    status='completed',
+                    duration_ms=duration_ms,
+                    materials_count=0
+                )
 
         except Exception as e:
-            print(f"  素材获取失败: {e}")
+            print(f"  ❌ 素材获取失败: {e}")
+            # 记录失败步骤
+            duration_ms = int((time.time() - start_time) * 1000)
+            self.subtitle_json_manager.add_processing_step(
+                self.json_path,
+                step='material_insertion',
+                status='failed',
+                duration_ms=duration_ms,
+                error=str(e)
+            )
+            import traceback
+            traceback.print_exc()
+
+    def _composite_materials(self):
+        """步骤6: 视频合成 - 将素材合成到视频中"""
+        import time
+        start_time = time.time()
+
+        # 检查配置
+        pexels_config = self.template_config.get('pexels_config', {})
+        if not pexels_config.get('enabled', False):
+            print("  ⏭️  素材插入未启用，跳过视频合成")
+            return
+
+        # 检查是否启用视频合成
+        if not pexels_config.get('composite_video', True):
+            print("  ⏭️  视频合成未启用")
+            return
+
+        try:
+            # 加载字幕数据
+            data = self.subtitle_json_manager.load_subtitle_json(self.json_path)
+
+            # 检查是否有素材
+            materials = data.get('materials', [])
+            if not materials:
+                print("  ⚠️  没有素材需要合成")
+                return
+
+            print(f"  找到 {len(materials)} 个素材需要合成")
+
+            # 导入视频合成器
+            from modules.video.video_compositor import VideoCompositor
+            compositor = VideoCompositor()
+
+            # 生成输出路径
+            video_dir = os.path.dirname(self.video_path)
+            video_name = os.path.splitext(os.path.basename(self.video_path))[0]
+            output_path = os.path.join(video_dir, f"{video_name}_with_materials.mp4")
+
+            # 获取覆盖位置配置
+            overlay_position = pexels_config.get('overlay_position', 'center')
+
+            # 合成视频
+            print(f"  正在合成视频...")
+            composited_video = compositor.composite_from_subtitle_data(
+                self.video_path,
+                data,
+                output_path,
+                overlay_position
+            )
+
+            # 更新视频路径为合成后的视频
+            self.video_path = composited_video
+            print(f"  ✅ 视频合成完成: {composited_video}")
+
+            # 记录处理步骤
+            duration_ms = int((time.time() - start_time) * 1000)
+            self.subtitle_json_manager.add_processing_step(
+                self.json_path,
+                step='video_composition',
+                status='completed',
+                duration_ms=duration_ms,
+                output_video=composited_video
+            )
+
+        except Exception as e:
+            print(f"  ⚠️  视频合成失败: {e}")
+            print(f"  将使用原始视频继续处理")
+            # 记录失败步骤
+            duration_ms = int((time.time() - start_time) * 1000)
+            self.subtitle_json_manager.add_processing_step(
+                self.json_path,
+                step='video_composition',
+                status='failed',
+                duration_ms=duration_ms,
+                error=str(e)
+            )
             import traceback
             traceback.print_exc()
 
     def _create_draft(self):
-        """步骤3: 生成剪映草稿"""
-        # 将视频和字幕复制到剪映缓存目录，确保剪映可以访问
-        import shutil
-        jianying_cache = os.path.expanduser("~/Movies/JianyingPro/User Data/Cache/VideoAlgorithm")
-        os.makedirs(jianying_cache, exist_ok=True)
-
-        video_filename = os.path.basename(self.video_path)
-        cached_video_path = os.path.join(jianying_cache, video_filename)
-
-        # 复制视频到缓存目录
-        if not os.path.exists(cached_video_path):
-            print(f"  复制视频到剪映缓存目录...")
-            shutil.copy2(self.video_path, cached_video_path)
-
-        # 复制字幕JSON到缓存目录（转换为旧格式）
-        json_filename = os.path.basename(self.json_path)
-        cached_json_path = os.path.join(jianying_cache, json_filename)
-
-        # 读取JSON并转换格式
-        with open(self.json_path, 'r', encoding='utf-8') as f:
-            json_data = json.load(f)
-
-        # 如果是新格式，转换为旧格式
-        if isinstance(json_data, dict) and 'subtitles' in json_data:
-            json_data = json_data['subtitles']
-
-        # 保存为旧格式
-        with open(cached_json_path, 'w', encoding='utf-8') as f:
-            json.dump(json_data, f, ensure_ascii=False, indent=2)
-
-        # 使用API客户端调用草稿生成服务，使用缓存路径
+        """步骤7: 生成剪映草稿"""
         try:
-            self.draft_path = self.api_client.create_draft(
-                video_path=cached_video_path,
-                json_path=cached_json_path,
+            # 使用独立的草稿生成器
+            self.draft_path = self.draft_generator.create_draft(
+                video_path=self.video_path,
+                json_path=self.json_path,
                 template_config=self.template_config,
                 output_title=self.output_title
             )
-            print(f"  ✅ 草稿已生成: {self.draft_path}")
 
-            # 添加标题和作者信息
-            if self.draft_path:
-                self._add_custom_texts_to_draft()
+            print(f"  ✅ 草稿已生成: {self.draft_path}")
 
         except Exception as e:
             raise Exception(f"草稿生成失败: {e}")
-
-    def _add_custom_texts_to_draft(self):
-        """在草稿中添加自定义标题和作者信息"""
-        try:
-            # 导入必要的模块
-            project_root = Path(__file__).resolve().parent.parent.parent.parent
-            if str(project_root) not in sys.path:
-                sys.path.insert(0, str(project_root))
-
-            from service.editor import Draft
-            from service.clips.text_clip import TextClip
-
-            # 读取字幕数据获取总时长
-            with open(self.json_path, 'r', encoding='utf-8') as f:
-                json_data = json.load(f)
-
-            if isinstance(json_data, dict) and 'subtitles' in json_data:
-                subtitles = json_data['subtitles']
-            else:
-                subtitles = json_data
-
-            # 计算总时长（微秒）
-            if subtitles:
-                total_duration_ms = max(s.get('EndMs', 0) for s in subtitles)
-                total_duration_us = total_duration_ms * 1000  # 转换为微秒
-            else:
-                total_duration_us = 10000000  # 默认10秒
-
-            # 打开草稿
-            draft = Draft(self.draft_path)
-
-            # 画布尺寸（竖屏9:16）
-            canvas = [1080, 1920]
-
-            # 添加标题
-            if self.template_config.get('title', {}).get('enabled'):
-                title_config = self.template_config['title']
-                title_text = title_config.get('text', '')
-
-                if title_text:
-                    print(f"  添加标题: {title_text[:20]}...")
-
-                    # 创建标题文本
-                    title_clip = TextClip(title_text)
-                    title_clip.set_font_size(title_config.get('font_size', 16))
-                    title_clip.set_color(title_config.get('color', '#000000'))
-
-                    # 设置位置
-                    x_pos = title_config.get('x_position', 0)
-                    y_pos = title_config.get('y_position', -800)
-                    title_clip.set_transform(canvas, x_pos, y_pos)
-
-                    # 设置时长
-                    title_clip.segment.set_duration(total_duration_us)
-
-                    # 设置阴影
-                    has_shadow = title_config.get('has_shadow', '关闭') == '开启'
-                    title_clip.set_shadow(has_shadow)
-
-                    # 添加到草稿
-                    draft.add_clip_to_track(title_clip, index=1)
-                    print(f"  ✅ 标题已添加")
-
-            # 添加作者信息
-            if self.template_config.get('author_info', {}).get('enabled'):
-                author_config = self.template_config['author_info']
-                author_name = author_config.get('name', '')
-                author_title = author_config.get('title', '')
-                author_subtitle = author_config.get('subtitle', '')
-
-                # 组合作者信息文本
-                author_lines = []
-                if author_name:
-                    author_lines.append(author_name)
-                if author_title:
-                    author_lines.append(author_title)
-                if author_subtitle:
-                    author_lines.append(author_subtitle)
-                author_text = '\n'.join(author_lines)
-
-                if author_text:
-                    print(f"  添加作者信息: {author_name}")
-
-                    # 创建作者信息文本
-                    author_clip = TextClip(author_text)
-                    author_clip.set_font_size(author_config.get('font_size', 10))
-                    author_clip.set_color(author_config.get('color', '#000000'))
-
-                    # 设置位置
-                    x_pos = author_config.get('x_position', 0)
-                    y_pos = author_config.get('y_position', 800)
-                    author_clip.set_transform(canvas, x_pos, y_pos)
-
-                    # 设置时长
-                    author_clip.segment.set_duration(total_duration_us)
-
-                    # 设置阴影
-                    has_shadow = author_config.get('has_shadow', '关闭') == '开启'
-                    author_clip.set_shadow(has_shadow)
-
-                    # 添加到草稿
-                    draft.add_clip_to_track(author_clip, index=2)
-                    print(f"  ✅ 作者信息已添加")
-
-            # 保存草稿
-            draft.save()
-            print(f"  ✅ 草稿已更新")
-
-        except Exception as e:
-            import traceback
-            print(f"  ⚠️  添加自定义文本失败: {e}")
-            print(f"  详细错误: {traceback.format_exc()}")

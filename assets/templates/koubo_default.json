@@ -4,7 +4,7 @@
     "enabled": true,
     "color": "#F5F5F5",
     "type": "image",
-    "image_path": "/Users/lottery/intership/code/auto_jianying/koubo_video_processor/assets/gray_white_background.png"
+    "image_path": "assets/images/gray_white_background.png"
   },
   "title": {
     "enabled": true,
@@ -79,13 +79,23 @@
     ]
   },
   "audio_list": [],
+  "breath_removal": {
+    "enabled": true,
+    "generate_audio": true,
+    "generate_video": true,
+    "threshold": 0.02,
+    "min_duration": 200,
+    "max_gap": 500
+  },
   "enable_deepseek": true,
   "enable_pexels": true,
   "pexels_config": {
     "enabled": true,
-    "insert_interval": 45,
+    "insert_interval": 20,
     "clip_duration": 4,
     "search_mode": "auto",
-    "opacity": 1.0
+    "opacity": 1.0,
+    "composite_video": true,
+    "overlay_position": "center"
   }
 }

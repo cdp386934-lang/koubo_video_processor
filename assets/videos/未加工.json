@@ -152,7 +152,13 @@
       "removed": 0,
       "keywords": [
         "防御"
-      ]
+      ],
+      "material_insert": {
+        "time_ms": 24520,
+        "duration_ms": 4000,
+        "material_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+        "keyword": "关系"
+      }
     },
     {
       "FinalSentence": "人在真正\"安全\"的时候",
@@ -178,7 +184,7 @@
       "removed": 0
     },
     {
-      "FinalSentence": "所以我们\"谈\"恋爱\"\"",
+      "FinalSentence": "所以我们谈\"恋爱\"",
       "Text": "所以我们谈恋爱",
       "StartMs": 29400,
       "EndMs": 30720,
@@ -300,7 +306,13 @@
       "removed": 0,
       "keywords": [
         "温柔"
-      ]
+      ],
+      "material_insert": {
+        "time_ms": 49519,
+        "duration_ms": 4000,
+        "material_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+        "keyword": "恋爱"
+      }
     },
     {
       "FinalSentence": "足够\"在乎\" 足够\"稳定\"",
@@ -346,7 +358,7 @@
       "FinalSentence": "因为不是每个\"孩子\"",
       "Text": "因为不是每个孩子",
       "StartMs": 54959,
-      "EndMs": 56440,
+      "EndMs": 56400,
       "keyword": "\"孩子\"",
       "text_grade": 3,
       "video_grade": 1,
@@ -358,7 +370,7 @@
     {
       "FinalSentence": "都只是\"单纯\" \"天真\" \"可爱\"",
       "Text": "都只是单纯 天真 可爱",
-      "StartMs": 56440,
+      "StartMs": 56400,
       "EndMs": 59160,
       "keyword": "\"单纯\"、\"天真\"、\"可爱\"",
       "text_grade": 3,
@@ -435,7 +447,13 @@
         "否定",
         "忽视",
         "控制"
-      ]
+      ],
+      "material_insert": {
+        "time_ms": 71960,
+        "duration_ms": 4000,
+        "material_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+        "keyword": "孩子"
+      }
     },
     {
       "FinalSentence": "\"情绪暴烈\"的家庭",
@@ -586,7 +604,13 @@
       "keywords": [
         "爱错人",
         "选错人"
-      ]
+      ],
+      "material_insert": {
+        "time_ms": 96360,
+        "duration_ms": 4000,
+        "material_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+        "keyword": "治疗"
+      }
     },
     {
       "FinalSentence": "陷入同样的\"关系\"",
@@ -716,14 +740,13 @@
       "Text": "爱情也不是心理治疗",
       "StartMs": 112280,
       "EndMs": 114039,
-      "keyword": "\"心理\"、\"治疗\"、\"爱情\"",
+      "keyword": "\"心理\"、\"治疗\"",
       "text_grade": 3,
       "video_grade": 1,
       "removed": 0,
       "keywords": [
         "心理",
-        "治疗",
-        "爱情"
+        "治疗"
       ]
     },
     {
@@ -731,12 +754,11 @@
       "Text": "到你爸只好自己的任务",
       "StartMs": 114039,
       "EndMs": 115759,
-      "keyword": "\"自己\"、\"任务\"",
+      "keyword": "\"任务\"",
       "text_grade": 3,
       "video_grade": 1,
       "removed": 0,
       "keywords": [
-        "自己",
         "任务"
       ]
     },
@@ -754,8 +776,8 @@
       ]
     },
     {
-      "FinalSentence": "那段\"关系\"从一开始",
-      "Text": "那段关系从一开始",
+      "FinalSentence": "那道\"关系\"从一开始",
+      "Text": "那道关系从一开始",
       "StartMs": 117080,
       "EndMs": 118920,
       "keyword": "\"关系\"",
@@ -764,13 +786,19 @@
       "removed": 0,
       "keywords": [
         "关系"
-      ]
+      ],
+      "material_insert": {
+        "time_ms": 118920,
+        "duration_ms": 4000,
+        "material_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+        "keyword": "心理"
+      }
     },
     {
       "FinalSentence": "就已经\"超载\"了",
       "Text": "就已经超载了",
       "StartMs": 118920,
-      "EndMs": 120520,
+      "EndMs": 120440,
       "keyword": "\"超载\"",
       "text_grade": 3,
       "video_grade": 1,
@@ -782,8 +810,8 @@
     {
       "FinalSentence": "这不是你的错",
       "Text": "这不是你的错",
-      "StartMs": 120520,
-      "EndMs": 121880,
+      "StartMs": 120440,
+      "EndMs": 121840,
       "keyword": "",
       "text_grade": 1,
       "video_grade": 1,
@@ -792,8 +820,8 @@
     {
       "FinalSentence": "这是很多人",
       "Text": "这是很多人",
-      "StartMs": 121880,
-      "EndMs": 123120,
+      "StartMs": 121840,
+      "EndMs": 123080,
       "keyword": "",
       "text_grade": 1,
       "video_grade": 1,
@@ -802,7 +830,7 @@
     {
       "FinalSentence": "在\"亲密\"关系\"\"里",
       "Text": "在亲密关系里",
-      "StartMs": 123120,
+      "StartMs": 123080,
       "EndMs": 124160,
       "keyword": "\"关系\"",
       "text_grade": 3,
@@ -828,240 +856,768 @@
     }
   ],
   "music": [],
+  "materials": [
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "关系",
+      "video_id": 6673886,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/关系_6673886.mp4",
+      "duration": 30,
+      "width": 720,
+      "height": 1366
+    },
+    {
+      "keyword": "恋爱",
+      "video_id": 3710301,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/恋爱_3710301.mp4",
+      "duration": 31,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "孩子",
+      "video_id": 31260594,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/孩子_31260594.mp4",
+      "duration": 10,
+      "width": 360,
+      "height": 640
+    },
+    {
+      "keyword": "治疗",
+      "video_id": 6629704,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/治疗_6629704.mp4",
+      "duration": 35,
+      "width": 1080,
+      "height": 2048
+    },
+    {
+      "keyword": "心理",
+      "video_id": 9063794,
+      "local_path": "/Users/lottery/.koubo_cache/pexels/心理_9063794.mp4",
+      "duration": 25,
+      "width": 1080,
+      "height": 2048
+    }
+  ],
   "config": {},
   "metadata": {
     "processing_steps": [
       {
+        "step": "asr",
+        "status": "completed",
+        "duration_ms": 10621,
+        "timestamp": "2026-03-09T17:10:05.011035"
+      },
+      {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T12:08:21.271653",
+        "duration_ms": 4,
+        "timestamp": "2026-03-09T17:10:05.016064",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 8894,
-        "timestamp": "2026-03-09T12:08:30.167713",
+        "duration_ms": 8906,
+        "timestamp": "2026-03-09T17:10:13.923762",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 2864,
+        "timestamp": "2026-03-09T17:10:16.790735",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 12265,
+        "timestamp": "2026-03-09T17:10:29.058988",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T12:08:30.169207",
+        "timestamp": "2026-03-09T17:10:29.060527",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T12:14:11.499756",
+        "duration_ms": 4,
+        "timestamp": "2026-03-09T17:21:12.946903",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 7511,
-        "timestamp": "2026-03-09T12:14:19.012866",
+        "duration_ms": 8101,
+        "timestamp": "2026-03-09T17:21:21.050828",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 2848,
+        "timestamp": "2026-03-09T17:21:23.902340",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 11850,
+        "timestamp": "2026-03-09T17:21:35.754295",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T12:14:19.015578",
+        "timestamp": "2026-03-09T17:21:35.755810",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T12:51:00.586966",
+        "duration_ms": 3,
+        "timestamp": "2026-03-09T17:23:01.783419",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 7543,
-        "timestamp": "2026-03-09T12:51:08.132042",
+        "duration_ms": 144968,
+        "timestamp": "2026-03-09T17:25:26.752657",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 2704,
+        "timestamp": "2026-03-09T17:25:29.462758",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 12089,
+        "timestamp": "2026-03-09T17:25:41.553340",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T12:51:08.134576",
+        "timestamp": "2026-03-09T17:25:41.554888",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T12:53:55.731854",
+        "duration_ms": 4,
+        "timestamp": "2026-03-09T17:33:11.405106",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 8019,
-        "timestamp": "2026-03-09T12:54:03.752636",
+        "duration_ms": 7754,
+        "timestamp": "2026-03-09T17:33:19.161407",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 2692,
+        "timestamp": "2026-03-09T17:33:21.855849",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 12120,
+        "timestamp": "2026-03-09T17:33:33.978649",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T12:54:03.753958",
+        "timestamp": "2026-03-09T17:33:33.980304",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:03:50.563771",
+        "duration_ms": 3,
+        "timestamp": "2026-03-09T17:34:56.801091",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 8324,
-        "timestamp": "2026-03-09T14:03:58.889911",
+        "duration_ms": 8257,
+        "timestamp": "2026-03-09T17:35:05.060349",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 2657,
+        "timestamp": "2026-03-09T17:35:07.719446",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 12302,
+        "timestamp": "2026-03-09T17:35:20.023849",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T14:03:58.891433",
+        "timestamp": "2026-03-09T17:35:20.025647",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:04:52.974506",
+        "duration_ms": 5,
+        "timestamp": "2026-03-09T17:39:11.042639",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 7912,
-        "timestamp": "2026-03-09T14:05:00.888771",
+        "duration_ms": 9472,
+        "timestamp": "2026-03-09T17:39:20.516731",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 3432,
+        "timestamp": "2026-03-09T17:39:23.950735",
+        "materials_count": 5
+      },
+      {
+        "step": "breath_removal",
+        "status": "completed",
+        "duration_ms": 9,
+        "timestamp": "2026-03-09T17:39:26.316915",
+        "removed_count": 0
+      },
+      {
+        "step": "deepseek_keywords",
+        "status": "completed",
+        "duration_ms": 8327,
+        "timestamp": "2026-03-09T17:39:34.659656",
+        "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 4440,
+        "timestamp": "2026-03-09T17:39:39.121245",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 21663,
+        "timestamp": "2026-03-09T17:39:45.616768",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T14:05:00.890870",
+        "timestamp": "2026-03-09T17:39:45.619739",
+        "music_segments": 0
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 17446,
+        "timestamp": "2026-03-09T17:39:56.570012",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
+      },
+      {
+        "step": "background_music",
+        "status": "skipped",
+        "duration_ms": 0,
+        "timestamp": "2026-03-09T17:39:56.572172",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:05:35.763571",
+        "duration_ms": 8,
+        "timestamp": "2026-03-09T17:47:54.836900",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 7826,
-        "timestamp": "2026-03-09T14:05:43.591828",
+        "duration_ms": 7998,
+        "timestamp": "2026-03-09T17:48:02.837761",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 3119,
+        "timestamp": "2026-03-09T17:48:05.959974",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 24982,
+        "timestamp": "2026-03-09T17:48:30.945148",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T14:05:43.594171",
+        "timestamp": "2026-03-09T17:48:30.947753",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:06:01.774789",
+        "duration_ms": 4,
+        "timestamp": "2026-03-09T17:54:14.862214",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 8016,
-        "timestamp": "2026-03-09T14:06:09.792307",
+        "duration_ms": 7429,
+        "timestamp": "2026-03-09T17:54:22.293216",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 2650,
+        "timestamp": "2026-03-09T17:54:24.946918",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 15243,
+        "timestamp": "2026-03-09T17:54:40.193338",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T14:06:09.793910",
+        "timestamp": "2026-03-09T17:54:40.195611",
         "music_segments": 0
       },
       {
         "step": "breath_removal",
         "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:07:44.251503",
+        "duration_ms": 7,
+        "timestamp": "2026-03-09T17:57:43.701736",
         "removed_count": 0
       },
       {
         "step": "deepseek_keywords",
         "status": "completed",
-        "duration_ms": 8009,
-        "timestamp": "2026-03-09T14:07:52.263102",
+        "duration_ms": 7814,
+        "timestamp": "2026-03-09T17:57:51.523270",
         "keywords_count": 47
+      },
+      {
+        "step": "material_insertion",
+        "status": "completed",
+        "duration_ms": 2816,
+        "timestamp": "2026-03-09T17:57:54.342182",
+        "materials_count": 5
+      },
+      {
+        "step": "video_composition",
+        "status": "completed",
+        "duration_ms": 11810,
+        "timestamp": "2026-03-09T17:58:06.155047",
+        "output_video": "/Users/lottery/intership/code/koubo_video_processor/assets/videos/未加工_with_materials.mp4"
       },
       {
         "step": "background_music",
         "status": "skipped",
         "duration_ms": 0,
-        "timestamp": "2026-03-09T14:07:52.266194",
-        "music_segments": 0
-      },
-      {
-        "step": "breath_removal",
-        "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:09:13.293756",
-        "removed_count": 0
-      },
-      {
-        "step": "deepseek_keywords",
-        "status": "completed",
-        "duration_ms": 7676,
-        "timestamp": "2026-03-09T14:09:20.971363",
-        "keywords_count": 47
-      },
-      {
-        "step": "background_music",
-        "status": "skipped",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:09:20.974011",
-        "music_segments": 0
-      },
-      {
-        "step": "breath_removal",
-        "status": "completed",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:09:57.762098",
-        "removed_count": 0
-      },
-      {
-        "step": "deepseek_keywords",
-        "status": "completed",
-        "duration_ms": 7886,
-        "timestamp": "2026-03-09T14:10:05.650720",
-        "keywords_count": 47
-      },
-      {
-        "step": "background_music",
-        "status": "skipped",
-        "duration_ms": 0,
-        "timestamp": "2026-03-09T14:10:05.653859",
+        "timestamp": "2026-03-09T17:58:06.157274",
         "music_segments": 0
       }
     ]
-  }
+  },
+  "processing_steps": []
 }
